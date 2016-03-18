@@ -1,0 +1,54 @@
+## TO DO NA KOLEJNE ZAJECIA Z PROJEKTU ##
+
+	Bedziemy implementowac funkcjonalnosci na przedstawionym modelu.
+	
+
+
+Utworzenie Modelu
+	- Komenda jedna ktory go tworzy
+
+
+## MODELE TODO ##
+
+-Pierwszy model to paczka
+	Parcel - potrzebujemy cos po czym nasz klient bedzie rozpoznawal paczke, 
+		 kazda paczka musi miec indywidualny hash
+		- parcel_hash(privatekey)
+		- notes - uwagi do paczki
+		- waga
+
+- Klient tworzy zgloszenie - kolejny model
+	ParcelOrder
+		- id_parcel_order
+		- id_sender
+		- id_receview
+		- parcel_hash
+		- status
+		- track/or no_track - wartosc boolowska
+
+- AddressData
+		- id_address_data
+		- first_name
+		- last_name
+		- city
+		- street
+		- post_number
+		- phone_number
+		_ email
+
+- Postman
+		- id_postman
+		- name
+		- city
+		- phone_number
+		- email
+		- password
+	
+- City
+		-id_city
+		-name
+
+- Task
+		- id_task
+		- id_parcel_order
+		- done
