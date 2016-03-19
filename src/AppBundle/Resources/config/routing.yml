@@ -1,4 +1,4 @@
-app_parcel_order_ParcelOrder:
+app_parcel_order:
     type: rest
     prefix: /v1
     resource: 'AppBundle\Controller\ParcelOrderController'
