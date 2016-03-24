@@ -24,7 +24,7 @@ class ParcelOrder
     /**
      * @var Parcel
      *
-     * @ORM\OneToOne(targetEntity="Parcel")
+     * @ORM\ManyToOne(targetEntity="Parcel")
      * @ORM\JoinColumn(name="parcel_id", referencedColumnName="id", nullable=false)
      */
     private $parcel;
