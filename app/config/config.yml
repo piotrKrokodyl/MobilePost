@@ -18,7 +18,9 @@ framework:
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
-    #serializer:      { enable_annotations: true }
+    serializer:
+        enabled: true
+
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
@@ -69,4 +71,9 @@ swiftmailer:
     spool:     { type: memory }
 
 fos_rest:
-    param_fetcher_listener: force
+    param_fetcher_listener: true
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User
