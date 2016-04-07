@@ -37,6 +37,7 @@ class LoadFixtures extends AbstractFixture implements FixtureInterface, Containe
         $this->loadUsers($manager);
         $this->loadAddresses($manager);
         $this->loadParcelsAndTasks($manager);
+        $manager->flush();
     }
 
     private function loadDictionaries(ObjectManager $manager)
@@ -46,8 +47,6 @@ class LoadFixtures extends AbstractFixture implements FixtureInterface, Containe
         $manager->persist($city);
 
         $this->addReference('city', $city);
-
-        $manager->flush();
     }
 
     private function loadUsers(ObjectManager $manager)
@@ -75,8 +74,6 @@ class LoadFixtures extends AbstractFixture implements FixtureInterface, Containe
         $manager->persist($johnPostman);
 
         $this->addReference('postman', $johnPostman);
-
-        $manager->flush();
     }
 
     private function loadAddresses(ObjectManager $manager)
