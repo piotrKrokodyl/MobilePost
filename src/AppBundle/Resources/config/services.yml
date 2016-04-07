@@ -1,0 +1,7 @@
+parameters:
+    pai_rest.parcelorder.class: AppBundle\Entity\ParcelOrder
+
+services:
+    pai_rest.parcelorder.form:
+        class: AppBundle\Handler\ParcelOrderFormHandler
+        arguments: ['@doctrine.orm.entity_manager', %pai_rest.parcelorder.class%, '@form.factory', 'AppBundle\Form\ParcelOrderType']
