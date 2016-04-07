@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\ParcelOrder;
+
 /**
  * ParcelOrderRepository
  *
@@ -10,4 +12,10 @@ namespace AppBundle\Repository;
  */
 class ParcelOrderRepository extends \Doctrine\ORM\EntityRepository
 {
+    function save(ParcelOrder $entity)
+    {
+        $em = $this->getEntityManager();
+        $em->persist($entity);
+        $em->flush();
+    }
 }
