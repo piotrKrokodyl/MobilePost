@@ -18,4 +18,10 @@ class ParcelOrderRepository extends \Doctrine\ORM\EntityRepository
         $em->persist($entity);
         $em->flush();
     }
+	
+	public function delete(ParcelInterface $parcelOrder) { 
+		$em = $this->getEntityManager();
+		$em->remove($parcelOrder);
+		$em->flush();
+    } 
 }

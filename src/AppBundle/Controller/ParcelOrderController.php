@@ -33,4 +33,23 @@ class ParcelOrderController extends FOSRestController
         }
         return $this->handleView($view);
     }
+	
+	/**
+	*deleteParcelorderAction - implemented by Och Tomasz
+	*
+	*/
+	public function deleteParcelorderAction(Request $request, $id) 
+	{ 
+		var_dump($request);
+		$parcel = $this->getDoctrine()->getRepository('PAIParcelBundle:Parcelorder')->find($id);
+		if ($parcel)
+		{
+			$this->getDoctrine()->getRepository('PAIParcelBundle:Parcelorfer')->delete($parcel);
+		}
+		else
+		{
+			
+			throw new NotFoundHttpException(sprintf('The resource \'%s\' was not found.', $id));
+		}	
+	}
 }
