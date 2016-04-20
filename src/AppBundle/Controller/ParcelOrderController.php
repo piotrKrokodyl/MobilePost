@@ -9,6 +9,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ParcelOrderController extends FOSRestController 
 {
+    public function getParcelordersAction(){
+        $data = $this->getDoctrine()->getRepository('AppBundle\Entity\ParcelOrder')->findAll();
+        $view = $this->view($data, 200);
+        return $this->handleView($view);
+    }
+
     public function getParcelorderAction($id){
         $data = $this->getDoctrine()->getRepository('AppBundle\Entity\ParcelOrder')->findOneById($id);
         $view = $this->view($data, 200);

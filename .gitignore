@@ -45,5 +45,8 @@
 # Sessions
 /var/sessions
 
+# Node modules
+/src/AppBundle/Resources/public/node_modules
+
 # Others
 /addition
