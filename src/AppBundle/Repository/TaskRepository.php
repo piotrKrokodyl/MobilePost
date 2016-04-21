@@ -10,4 +10,18 @@ namespace AppBundle\Repository;
  */
 class TaskRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllTasksByPostmanId($postmanId){
+        $taskRepository = $this->getDoctrine()->getRepository('AppBundle:Task');
+        $tasks = $taskRepository->findByPostman($postmanId);
+        $view = $this->view($tasks, 200);
+        return $this->handleView($view);
+    }
+}
+
+function getThingAction() {
+    $loggedInUser = $this->container->get('security.token_storage')->getToken()->getUser();
+    $taskRepository = $this->getDoctrine()->getRepository('AppBundle:Task');
+    $tasks = $taskRepository->findByPostman($loggedInUser->getId());
+    $view = $this->view($tasks, 200);
+    return $this->handleView($view);
 }
