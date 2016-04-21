@@ -17,11 +17,3 @@ class TaskRepository extends \Doctrine\ORM\EntityRepository
         return $this->handleView($view);
     }
 }
-
-function getThingAction() {
-    $loggedInUser = $this->container->get('security.token_storage')->getToken()->getUser();
-    $taskRepository = $this->getDoctrine()->getRepository('AppBundle:Task');
-    $tasks = $taskRepository->findByPostman($loggedInUser->getId());
-    $view = $this->view($tasks, 200);
-    return $this->handleView($view);
-}
