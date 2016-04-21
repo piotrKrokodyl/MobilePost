@@ -39,7 +39,34 @@ class ParcelOrderController extends FOSRestController
         }
         return $this->handleView($view);
     }
-	
+	public function putParcelAction(Request $request, $id) 
+	{
+		try
+		{
+			$parcel = $this->getDoctrine()->getRepository('ParcelBundle:Parcel')
+			->find($id);
+			
+			if (!$parcel) {
+				$statusCode = Response::HTTP_CREATED;
+				$parcel = $this->container->get('parcel_rest.parcel_form.handler')
+				->post($request->request->all());
+			}
+			else {
+				$statusCode = Response::HTTP_NO_CONTENT;
+				$parcel = $this->container->get('parcel_rest.parcel_form.handler')
+				->put($parcel,$request->request->all());
+			}
+			$routeOptions = array(
+				'id' => $parcel->getId(),
+				'_format' => $request->get('_format')
+			);
+			return $this->routeRedirectView('api_1_get_parcel',$routeOptions,$statusCode);
+		}
+		catch (InvalidFormException $exception) 
+		{
+			return $exception->getForm();
+		}
+	}
 	/**
 	*deleteParcelorderAction - implemented by Och Tomasz
 	*
