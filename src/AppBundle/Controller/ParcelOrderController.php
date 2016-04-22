@@ -43,7 +43,7 @@ class ParcelOrderController extends FOSRestController
 	{
 		try
 		{
-			$parcel = $this->getDoctrine()->getRepository('ParcelBundle:Parcel')
+			$parcel = $this->getDoctrine()->getRepository('AppBundle\Entity\ParcelOrder')
 			->find($id);
 			
 			if (!$parcel) {
