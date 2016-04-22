@@ -86,9 +86,4 @@ class ParcelOrderController extends FOSRestController
 			throw new NotFoundHttpException(sprintf('The resource \'%s\' was not found.', $id));
 		}
 	}
-
-    // Get all orders.
-    public function getParcelAction() {
-        return $this->getDoctrine()->getRepository('PAIParcelBundle:Parcel')->findAll();
-    }
 }
