@@ -6,8 +6,9 @@ use AppBundle\Exception\InvalidFormException;
 use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
-class ParcelOrderController extends FOSRestController 
+class ParcelOrderController extends FOSRestController
 {
     public function getParcelordersAction(){
         $data = $this->getDoctrine()->getRepository('AppBundle\Entity\ParcelOrder')->findAll();
@@ -39,21 +40,21 @@ class ParcelOrderController extends FOSRestController
         }
         return $this->handleView($view);
     }
-	public function putParcelAction(Request $request, $id) 
+	public function putParcelAction(Request $request, $id)
 	{
 		try
 		{
 			$parcel = $this->getDoctrine()->getRepository('AppBundle\Entity\ParcelOrder')
 			->find($id);
-			
+
 			if (!$parcel) {
 				$statusCode = Response::HTTP_CREATED;
-				$parcel = $this->container->get('parcel_rest.parcel_form.handler')
+				$parcel = $this->container->get('pai_rest.parcelorder.form')
 				->post($request->request->all());
 			}
 			else {
 				$statusCode = Response::HTTP_NO_CONTENT;
-				$parcel = $this->container->get('parcel_rest.parcel_form.handler')
+				$parcel = $this->container->get('pai_rest.parcelorder.form')
 				->put($parcel,$request->request->all());
 			}
 			$routeOptions = array(
@@ -62,7 +63,7 @@ class ParcelOrderController extends FOSRestController
 			);
 			return $this->routeRedirectView('api_1_get_parcel',$routeOptions,$statusCode);
 		}
-		catch (InvalidFormException $exception) 
+		catch (InvalidFormException $exception)
 		{
 			return $exception->getForm();
 		}
@@ -71,8 +72,8 @@ class ParcelOrderController extends FOSRestController
 	*deleteParcelorderAction - implemented by Och Tomasz
 	*
 	*/
-	public function deleteParcelorderAction(Request $request, $id) 
-	{ 
+	public function deleteParcelorderAction(Request $request, $id)
+	{
 		var_dump($request);
 		$parcel = $this->getDoctrine()->getRepository('PAIParcelBundle:Parcelorder')->find($id);
 		if ($parcel)
@@ -81,9 +82,9 @@ class ParcelOrderController extends FOSRestController
 		}
 		else
 		{
-			
+
 			throw new NotFoundHttpException(sprintf('The resource \'%s\' was not found.', $id));
-		}	
+		}
 	}
 
     // Get all orders.
