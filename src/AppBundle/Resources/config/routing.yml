@@ -9,3 +9,9 @@ app_user:
     prefix: /v1
     resource: 'AppBundle\Controller\UserController'
     name_prefix: api_1_user_
+    
+app_postman:
+    type: rest
+    prefix: /v1
+    resource: 'AppBundle\Controller\PostmanController'
+    name_prefix: api_1_postman_   
