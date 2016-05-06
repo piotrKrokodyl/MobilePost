@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+	<table border=1>
+		<tr><th>id</th><th>parcel_id</th><th>sender_id</th><th>receiver_id</th><th>status</th><th>tracking</th><th>Edit</th><th>Delete</th></tr>
+		{% for p in parcel_order %}
+			<tr>
+				<td>{{ p.id }}</td>
+				<td>{{ p.parcel_id }}</td>
+				<td>{{ p.sender_id }}</td>
+				<td>{{ p.receiver_id }}</td>
+				<td>{{ p.status }}</td>
+				<td>{{ p.tracking }}</td>
+				<td><a href="{{ path('product_edit', {'id' :p.id} ) }}">Edit</a></td>
+			</tr>
+		{% endfor %}
+	<table>
+{% endblock %}

@@ -18,4 +18,13 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
         ]);
     }
+		
+		/**
+		*
+		*/
+		public function indexAction2()
+		{
+			$parcel_orders = $this->getDoctrine()->getRepository('AppBundle:ParcelOrder')->findAllOrderedById();
+			return $this->render('AppBundle:Default:index.html.twig',array( 'ParcelOrder' => $parcel_orders ) );
+		}
 }
