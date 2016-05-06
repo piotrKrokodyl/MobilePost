@@ -22,7 +22,7 @@ app.factory('User', function ($http, $q) {
         },
         queryCurrentUser: function () {
             var self = this;
-            return $http.get('/api/v1/me.json')
+            return $http.get('/me.json')
             .then(function (data) {
                 self.queriedUser = true;
                 if (!data.data.id) {
@@ -50,20 +50,20 @@ app.factory('User', function ($http, $q) {
 });
 
 app.factory('ParcelOrder', ['$resource', function ($resource) {
-    return $resource('/api/v1/parcelorders/:id.json', {}, {
+    return $resource('/parcelorders/:id.json', {}, {
         query: {method: 'GET', isArray: true},
-        queryUnassigned: {method: 'GET', isArray: true, url: '/api/v1/parcelorders/unassigned.json'}
+        queryUnassigned: {method: 'GET', isArray: true, url: '/parcelorders/unassigned.json'}
     });
 }]);
 
 app.factory('Postman', ['$resource', function ($resource) {
-    return $resource('/api/v1/postmans/:id.json', {}, {
+    return $resource('/postmans/:id.json', {}, {
         query: {method: 'GET', isArray: true},
     });
 }]);
 
 app.factory('Task', ['$resource', function ($resource) {
-    return $resource('/api/v1/tasks/:id.json', {}, {
+    return $resource('/tasks/:id.json', {}, {
         post: {method: 'POST'}
     });
 }]);
