@@ -19,22 +19,21 @@ class ParcelOrderRepository extends \Doctrine\ORM\EntityRepository
         $em->flush();
     }
 	
-	
-		public function delete(ParcelInterface $parcelOrder) { 
-			$em = $this->getEntityManager();
-			$em->remove($parcelOrder);
-			$em->flush();
-		} 
-		
-		
-		
-		
-		
 		public function findAllOrderedById()
 		{
 			return $this->getEntityManager()->createQuery('SELECT p FROM AppBundle:Parcel_order p ORDER BY p.name ASC')->getResult();
 		}
-		
-		
-		
+
+	public function delete(ParcelInterface $parcelOrder) { 
+		$em = $this->getEntityManager();
+		$em->remove($parcelOrder);
+		$em->flush();
+    } 
+
+    function findAllUnassigned()
+    {
+        return $this->getEntityManager()->createQuery(
+            'SELECT po FROM AppBundle:ParcelOrder po WHERE NOT EXISTS (SELECT t FROM AppBundle:Task t WHERE t.id = po.id)'
+        )->getResult();
+    }
 }
